@@ -1,0 +1,45 @@
+############################
+# Data (DO NOT COMMIT)
+############################
+data/raw_data
+data/processed_data
+outputs/
+results/
+
+*.csv
+*.tsv
+*.jsonl
+*.parquet
+*.avro
+
+############################
+# Secrets & configs
+############################
+.env
+*.env
+configs/*.yaml
+!configs/*.example.yaml
+
+############################
+# Cache / temp
+############################
+__pycache__/
+*.pyc
+.cache/
+.tmp/
+
+############################
+# IDE / OS
+############################
+.idea/
+.vscode/
+.DS_Store
+
+############################
+# Logs
+############################
+*.log
+logs/
+
+# Local database files
+/var/

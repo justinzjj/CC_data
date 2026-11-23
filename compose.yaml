@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cc_data
+      POSTGRES_USER: cc_data
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets:
+      - postgres_password
+    ports:
+      - "127.0.0.1:55433:5432"
+    volumes:
+      - ./var/postgres:/var/lib/postgresql/data
+      - ./db/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cc_data -d cc_data"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+secrets:
+  postgres_password:
+    file: ./var/postgres_password
